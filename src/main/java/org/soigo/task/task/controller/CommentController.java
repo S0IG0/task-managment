@@ -40,6 +40,7 @@ public class CommentController {
     final ModelMapper mapper;
 
     @ApiResponses({
+            @ApiResponse(responseCode = "201"),
             @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Operation(
@@ -61,6 +62,9 @@ public class CommentController {
         );
     }
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200"),
+    })
     @Operation(
             summary = "Получение списка комментариев к задаче",
             description = "По умолчанию отсортировывает комментарии по дате их создания"

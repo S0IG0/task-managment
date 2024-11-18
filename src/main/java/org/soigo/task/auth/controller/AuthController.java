@@ -38,6 +38,9 @@ public class AuthController {
     @Value("${jwt.header.start}")
     String jwtHeaderStart;
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Успешный запрос"),
+    })
     @Operation(
             summary = "Регистрация новых пользователей",
             description = "Данный endpoint используется для регистрации новых пользователей в системе с ролью ROLE_USER"
@@ -51,6 +54,9 @@ public class AuthController {
                 .body(pairToken);
     }
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Успешный запрос"),
+    })
     @Operation(
             summary = "Вход для пользователей",
             description = "При успешном входе вы получаете пару JWT токенов (access, refresh)"
@@ -64,6 +70,7 @@ public class AuthController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Успешный запрос"),
             @ApiResponse(responseCode = "401", description = "Не авторизован", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Operation(
@@ -80,6 +87,7 @@ public class AuthController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Успешный запрос"),
             @ApiResponse(responseCode = "401", description = "Не авторизован", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Operation(
@@ -96,6 +104,7 @@ public class AuthController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Успешный запрос"),
             @ApiResponse(responseCode = "401", description = "Не авторизован", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Operation(

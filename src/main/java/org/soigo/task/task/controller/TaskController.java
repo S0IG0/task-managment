@@ -46,6 +46,7 @@ public class TaskController {
     final ModelMapper mapper;
 
     @ApiResponses({
+            @ApiResponse(responseCode = "201"),
             @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Tag(name = "Admin")
@@ -67,6 +68,7 @@ public class TaskController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200"),
             @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
             @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
@@ -90,6 +92,7 @@ public class TaskController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "204"),
             @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
             @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
@@ -110,6 +113,7 @@ public class TaskController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200"),
             @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
             @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
@@ -131,6 +135,7 @@ public class TaskController {
     }
 
     @ApiResponses({
+            @ApiResponse(responseCode = "200"),
             @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
     })
     @Operation(
@@ -143,6 +148,9 @@ public class TaskController {
         );
     }
 
+    @ApiResponses({
+            @ApiResponse(responseCode = "200"),
+    })
     @Operation(
             summary = "Получение списка задач",
             description = "Если фильтры не указаны, они не применяются. " +

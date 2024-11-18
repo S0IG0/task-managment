@@ -23,6 +23,7 @@ import java.util.UUID;
 @RequestMapping("api/user")
 @SecurityRequirement(name = "bearerAuth")
 @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Успешный запрос"),
         @ApiResponse(responseCode = "400", description = "Некорректный запрос", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Не авторизован", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "Ресурс не найден", content = @Content(schema = @Schema(implementation = ErrorMessage.class))),
