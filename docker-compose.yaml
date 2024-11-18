@@ -1,0 +1,51 @@
+services:
+  db-postgres:
+    environment:
+      - POSTGRES_DB=task-manager
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+    image: postgres:16-alpine3.17
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d task-manager -U admin" ]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    restart: always
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7.0.5-alpine3.17
+    volumes:
+      - redis-data:/data
+    restart: always
+    ports:
+      - "6379:6379"
+
+  spring-app:
+    build:
+      dockerfile: Dockerfile
+
+    environment:
+      - POSTGRES_HOST=db-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=task-manager
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+    depends_on:
+      - db-postgres
+      - redis
+
+    restart: always
+
+    ports:
+      - "8081:8081"
+
+volumes:
+  postgresql-data:
+  redis-data:
